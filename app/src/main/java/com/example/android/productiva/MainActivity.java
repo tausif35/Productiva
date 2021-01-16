@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,19 +37,28 @@ public class MainActivity extends AppCompatActivity {
         title = findViewById(R.id.textView2);
         tagline = findViewById(R.id.textView3);
 
-        logo.setAnimation(topAnim);
-        title.setAnimation(titleAnim);
-        tagline.setAnimation(bottomAnim);
+        logo.setAnimation(bottomAnim);
+        title.setAnimation(topAnim);
+        tagline.setAnimation(titleAnim);
 
 
-        new Handler().postDelayed(new Runnable() {
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent intent = new Intent(MainActivity.this,Dashboard.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        },  SPLASH_SCREEN);
+        RelativeLayout lay = findViewById(R.id.WelcomeLayout);
+        lay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,Dashboard.class);
                 startActivity(intent);
-               // finish();
-
+                finish();
             }
-        },  SPLASH_SCREEN);
+        });
+
     }
 }
