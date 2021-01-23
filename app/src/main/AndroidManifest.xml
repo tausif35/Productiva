@@ -9,10 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Productiva">
-        <activity android:name=".reminder"></activity>
+        <activity android:name=".ToDoSplash"></activity>
+        <activity android:name=".reminder" />
         <activity android:name=".timer" />
         <activity android:name=".notepad" />
-        <activity android:name=".ToDoList" />
+        <activity android:name=".ToDoList">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
         <activity android:name=".Dashboard" />
         <activity android:name=".MainActivity">
             <intent-filter>
