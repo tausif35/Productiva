@@ -175,7 +175,7 @@ public class notepad extends AppCompatActivity implements NoteListener {
                         noteAdapter.notifyItemRemoved(noteClickedPosition);
                     }else {
                         noteList.add(noteClickedPosition,notes.get(noteClickedPosition));
-                        noteAdapter.notifyItemInserted(noteClickedPosition);
+                        noteAdapter.notifyItemChanged(noteClickedPosition);
                     }
                 }
             }

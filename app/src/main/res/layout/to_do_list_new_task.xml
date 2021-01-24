@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="#3f3f3f">
 
     <EditText
         android:id="@+id/newTaskText"
@@ -11,8 +11,8 @@
         android:background="@null"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="Write A New Task"
-        android:textColorHint="@color/colorPrimaryDark"
-        android:textColor="@color/black"/>
+        android:textColorHint="@color/colorTextHint"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/newTaskButton"

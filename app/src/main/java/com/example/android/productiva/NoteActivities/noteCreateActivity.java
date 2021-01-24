@@ -122,9 +122,9 @@ public class noteCreateActivity extends AppCompatActivity {
 
     private void setViewOrUpdateNote(){
         inputNoteTitle.setText(alreadyAvailableNote.getTitle());
-        inputNoteSubtitle.setText(alreadyAvailableNote.getTitle());
-        inputNoteText.setText(alreadyAvailableNote.getTitle());
-        textDateTime.setText(alreadyAvailableNote.getTitle());
+        inputNoteSubtitle.setText(alreadyAvailableNote.getSubtitle());
+        inputNoteText.setText(alreadyAvailableNote.getNote_text());
+        textDateTime.setText(alreadyAvailableNote.getDate_time());
 
         if (alreadyAvailableNote.getImage_path() !=null && !alreadyAvailableNote.getImage_path().trim().isEmpty()){
             imageNote.setImageBitmap(BitmapFactory.decodeFile(alreadyAvailableNote.getImage_path()));
