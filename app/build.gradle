@@ -33,10 +33,29 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //cardview
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    //recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    //material design
     implementation 'com.google.android.material:material:1.2.1'
+
+    //room for database (used in notepad)
+    implementation 'androidx.room:room-runtime:2.2.6'
+    annotationProcessor 'androidx.room:room-compiler:2.2.6'
+
+    //Support for different screen sizes
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+
+    //rounded imageview
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+
 }

@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorSearchBackground"
     android:padding="16dp">
 
     <EditText
@@ -9,8 +10,12 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:hint="Write A New Task"
-        android:textColorHint="@color/colorPrimaryDark"/>
+        android:hint="@string/todoWriteTask"
+        android:textColorHint="@color/colorTextHint"
+        android:textColor="@color/colorWhite"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:includeFontPadding="false"/>
 
     <Button
         android:id="@+id/newTaskButton"
@@ -19,9 +24,9 @@
         android:layout_below="@id/newTaskText"
         android:textSize="16sp"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"
-        android:text="Add"
+        android:background="@color/design_default_color_primary_dark"
+        android:text="@string/todoAdd"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
+        android:textColor="@color/colorWhite" />
 
 </RelativeLayout>

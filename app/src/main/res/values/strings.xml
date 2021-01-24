@@ -2,10 +2,26 @@
     <string name="app_name">Productiva</string>
     <string name="tagline">The only productivity \napp you will need!</string>
     <string name="title">PRODUCTIVA</string>
-    <string name="tap">Tap anywhere to continue...</string>
+    <string name="tap">Tap anywhere to continue…</string>
     <string name="to_do_list">To Do</string>
     <string name="reminder">Remind</string>
     <string name="notes">Notes</string>
     <string name="timer">Timer</string>
-
+    <string name="todoToDoList">To-Do List</string>
+    <string name="todoWriteTask">Write A New Task</string>
+    <string name="todoAdd">Add</string>
+    <string name="noteMyNote">My Notes</string>
+    <string name="noteSearchNotes">Search Notes</string>
+    <string name="noteNoteTitle">Note Title</string>
+    <string name="noteNoteSubtitle">Note Subtitle</string>
+    <string name="noteTypeNote">Write Note Here…</string>
+    <string name="noteMiscellaneous">Miscellaneous</string>
+    <string name="noteChooseColor">Choose Color</string>
+    <string name="note_add_image">Add Image</string>
+    <string name="note_add_url">Add URL</string>
+    <string name="note_enter_url">Enter URL</string>
+    <string name="add">ADD</string>
+    <string name="cancel">Cancel</string>
+    <string name="note_delete_note">Delete Note</string>
+    <string name="note_sure_delete">Are You Sure You Want to Delete This Note?</string>
 </resources>

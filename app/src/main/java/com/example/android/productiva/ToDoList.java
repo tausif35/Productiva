@@ -32,7 +32,7 @@ public class ToDoList extends AppCompatActivity implements ToDoDialogCloseListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+//        Objects.requireNonNull(getSupportActionBar()).hide();
 
         db = new ToDoDatabaseHandler(this);
         db.openDatabase();
@@ -53,12 +53,7 @@ public class ToDoList extends AppCompatActivity implements ToDoDialogCloseListen
 
         todoAdapter.setTasks(taskList);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToDoAddTask.newInstance().show(getSupportFragmentManager(), ToDoAddTask.TAG);
-            }
-        });
+        fab.setOnClickListener(v -> ToDoAddTask.newInstance().show(getSupportFragmentManager(), ToDoAddTask.TAG));
     }
 
     @Override
