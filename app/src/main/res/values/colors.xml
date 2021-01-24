@@ -8,4 +8,22 @@
     <color name="colorDelete">#ff414d</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--<! Notepad Colors__>-->
+    <color name="colorSearchIcon">#dbdbdb</color>
+    <color name="colorTextHint">#7b7b7b</color>
+    <color name="colorQuickActionsBackground">#2f2d2e</color>
+    <color name="colorIcons">#a4a4a4</color>
+    <color name="colorTextSubtitle">#cecece</color>
+    <color name="colorDefaultNoteColor">#333333</color>
+    <color name="colorNoteSubtitleText">#fafafa</color>
+    <color name="colorMiscBackground">#1f1f1f</color>
+    <color name="colorSearchBackground">#3f3f3f</color>
+    <color name="colorExtra1">#ffcc5c</color>
+    <color name="colorExtra2">#ff6f69</color>
+    <color name="colorExtra3">#cc2a36</color>
+    <color name="colorExtra4">#00b159</color>
+    <color name="colorExtra5">#00a0b0</color>
+    <color name="colorBlack">#FF000000</color>
+    <color name="colorWhite">#FFFFFFFF</color>
 </resources>
