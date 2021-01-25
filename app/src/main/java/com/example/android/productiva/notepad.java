@@ -39,6 +39,8 @@ import com.example.android.productiva.NoteListeners.NoteListener;
 import java.util.ArrayList;
 import java.util.List;
 
+//    (⌐▀͡ ̯ʖ▀)     fixed line 180,192
+
 public class notepad extends AppCompatActivity implements NoteListener {
     public static final int REQUEST_CODE_ADD_NOTE = 1;
     public static final int REQUEST_CODE_UPDATE_NOTE =2;
@@ -187,7 +189,7 @@ public class notepad extends AppCompatActivity implements NoteListener {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ADD_NOTE && resultCode == RESULT_OK){
-            getNotes(REQUEST_CODE_SHOW_NOTE, false);
+            getNotes(REQUEST_CODE_ADD_NOTE, false);
         } else if (requestCode == REQUEST_CODE_UPDATE_NOTE && resultCode == RESULT_OK){
             if (data!=null){
                 getNotes(REQUEST_CODE_UPDATE_NOTE, data.getBooleanExtra("isNoteDeleted", false));

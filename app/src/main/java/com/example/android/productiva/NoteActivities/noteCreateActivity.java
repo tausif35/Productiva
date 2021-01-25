@@ -42,6 +42,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+//    (⌐▀͡ ̯ʖ▀)    fixed lines 126-129,302-303,
+
 public class noteCreateActivity extends AppCompatActivity {
 
     private EditText inputNoteTitle, inputNoteSubtitle, inputNoteText;
@@ -297,6 +299,7 @@ public class noteCreateActivity extends AppCompatActivity {
             view.findViewById(R.id.textDeleteNote).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    @SuppressLint("StaticFieldLeak")
                     class DeleteNoteTask extends AsyncTask<Void, Void, Void>{
 
                         @Override
