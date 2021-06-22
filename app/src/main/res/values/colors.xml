@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#57a0d3</color>
-    <color name="colorPrimaryDark">#729cba</color>
-    <color name="colorPrimaryDarker">#57a0d3</color>
-    <color name="colorSecondary">#d38257</color>
-    <color name="colorSecondaryDark">#d36357</color>
-    <color name="colorDelete">#ff414d</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#4d648d</color>
+    <color name="colorPrimaryDark">#2a4d69</color>
+    <color name="colorPrimaryDarker">#283655</color>
+    <color name="colorSecondary">#f4a261</color>
+    <color name="colorSecondaryDark">#e76f51</color>
+    <color name="colorDelete">#ff4842</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!--<! Notepad Colors__>-->
+    <color name="colorSearchIcon">#dbdbdb</color>
+    <color name="colorTextHint">#7b7b7b</color>
+    <color name="colorQuickActionsBackground">#2f2d2e</color>
+    <color name="colorIcons">#a4a4a4</color>
+    <color name="colorTextSubtitle">#cecece</color>
+    <color name="colorDefaultNoteColor">#333333</color>
+    <color name="colorNoteSubtitleText">#fafafa</color>
+    <color name="colorMiscBackground">#1d1d1d</color>
+    <color name="colorSearchBackground">#3f3f3f</color>
+    <color name="colorExtra1">#ffcc5c</color>
+    <color name="colorExtra2">#ff6f69</color>
+    <color name="colorExtra3">#cc2a36</color>
+    <color name="colorExtra4">#00b159</color>
+    <color name="colorExtra5">#00a0b0</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
