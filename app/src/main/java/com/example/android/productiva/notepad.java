@@ -39,7 +39,7 @@ import com.example.android.productiva.NoteListeners.NoteListener;
 import java.util.ArrayList;
 import java.util.List;
 
-//    (⌐▀͡ ̯ʖ▀)     fixed line 180,192
+
 
 public class notepad extends AppCompatActivity implements NoteListener {
     public static final int REQUEST_CODE_ADD_NOTE = 1;
