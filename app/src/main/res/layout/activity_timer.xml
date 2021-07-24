@@ -6,4 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".timer">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/timer_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:progress="50" />
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+        app:layout_constraintTop_toTopOf="@+id/progress_bar"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/timer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Work"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            />
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textColor="@color/black"
+            android:textSize="60sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/timer_start"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="Start"
+            android:textSize="20sp"
+            app:cornerRadius="100dp"
+            app:icon="@drawable/ic_play"
+            app:iconTint="@color/black"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/timer_reset"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="Reset"
+            android:textSize="20sp"
+            app:cornerRadius="100dp"
+            app:icon="@drawable/ic_reset"
+            app:iconTint="@color/black"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
