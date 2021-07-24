@@ -14,7 +14,7 @@
     <string name="noteNoteTitle">Note Title</string>
     <string name="noteNoteSubtitle">Note Subtitle</string>
     <string name="noteTypeNote">Write Note Here…</string>
-    <string name="noteMiscellaneous">Miscellaneous</string>
+    <string name="noteMiscellaneous">Options</string>
     <string name="noteChooseColor">Choose Color</string>
     <string name="note_add_image">Add Image</string>
     <string name="note_add_url">Add URL</string>

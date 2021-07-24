@@ -22,7 +22,7 @@ public class Dashboard extends AppCompatActivity {
         CardView card1 = findViewById(R.id.todo);
         CardView card2 = findViewById(R.id.note);
         CardView card3 = findViewById(R.id.timer);
-        CardView card4 = findViewById(R.id.reminder);
+        CardView card4 = findViewById(R.id.settings);
 
         //Next Activity Trigger
         card1.setOnClickListener(new View.OnClickListener() {
