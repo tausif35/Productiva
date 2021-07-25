@@ -15,12 +15,12 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_dashboard);
 
         //Variables
         CardView card1 = findViewById(R.id.todo);
-        CardView card2 = findViewById(R.id.note);
+        CardView card2 = findViewById(R.id.notes);
         CardView card3 = findViewById(R.id.timer);
         CardView card4 = findViewById(R.id.settings);
 

@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Notes"
         android:textColor="@color/white"
-        android:textSize="32sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/note_toolbar"
         app:layout_constraintEnd_toEndOf="@+id/note_toolbar"

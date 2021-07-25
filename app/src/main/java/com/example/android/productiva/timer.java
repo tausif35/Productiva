@@ -35,6 +35,7 @@ private Toolbar mToolbar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+        setTitle("");
 
         //Finding Views
         mTextViewCountDown = findViewById(R.id.timer_text);
@@ -42,7 +43,13 @@ private Toolbar mToolbar;
         mButtonReset = findViewById(R.id.timer_reset);
         mProgressBar = findViewById(R.id.progress_bar);
 
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.timer_toolbar);
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         mProgressBar.setMax((int) (mInitialTimeInMiliSec / 10));
         mButtonStartPause.setOnClickListener(v -> {
