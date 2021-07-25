@@ -12,10 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Productiva">
-        <activity android:name=".ToDoSplash"></activity>
         <activity android:name=".reminder" />
-        <activity android:name=".timer" />
-        <activity android:name=".notepad"
+        <activity android:name=".Timer" />
+        <activity android:name=".Notepad"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ToDoList">
@@ -25,7 +24,7 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".NoteActivities.noteCreateActivity"
+        <activity android:name=".NoteActivities.NoteCreateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".Dashboard" />

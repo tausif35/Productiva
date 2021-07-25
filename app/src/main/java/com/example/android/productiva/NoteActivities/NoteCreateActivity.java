@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -42,7 +45,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class noteCreateActivity extends AppCompatActivity {
+public class NoteCreateActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
@@ -63,9 +66,17 @@ public class noteCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.note_create_activity);
+        setTitle("Create note");
 
-        ImageView noteGoBack = findViewById(R.id.noteGoBack);
-        noteGoBack.setOnClickListener(v -> onBackPressed());
+        Toolbar toolbar = findViewById(R.id.noteCreate_toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+
         inputNoteTitle = findViewById(R.id.inputNoteTitle);
         inputNoteSubtitle = findViewById(R.id.inputNoteSubtitle);
         inputNoteText = findViewById(R.id.inputNote);
@@ -78,8 +89,7 @@ public class noteCreateActivity extends AppCompatActivity {
 
         textDateTime.setText(new SimpleDateFormat("EEEE, dd MMMM yyyy HH:mm a", Locale.getDefault()).format(new Date()));
 
-        ImageView imageSave = findViewById(R.id.imageSave);
-        imageSave.setOnClickListener(v -> saveNote());
+
         selectedNoteColor = "#333333";
         selectedImagePath = "";
 
@@ -116,6 +126,22 @@ public class noteCreateActivity extends AppCompatActivity {
 
         initMiscellaneous();
         setSubtitleIndicatorColor();
+    }
+
+    // Toolbar menu inflate
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // Toolbar menu item select
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_save) {
+            saveNote();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setViewOrUpdateNote() {
@@ -263,7 +289,7 @@ public class noteCreateActivity extends AppCompatActivity {
         noteMiscLayout.findViewById(R.id.layoutAddImage).setOnClickListener(v -> {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(noteCreateActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE_PERMISSION);
+                ActivityCompat.requestPermissions(NoteCreateActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE_PERMISSION);
             } else {
                 selectImage();
             }
@@ -286,7 +312,7 @@ public class noteCreateActivity extends AppCompatActivity {
 
     private void showDeleteNoteDialog() {
         if (dialogeDeleteNote == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(noteCreateActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(NoteCreateActivity.this);
             View view = LayoutInflater.from(this).inflate(R.layout.note_delete, (ViewGroup) findViewById(R.id.layoutDeleteNoteContainer));
             builder.setView(view);
             dialogeDeleteNote = builder.create();
@@ -387,7 +413,7 @@ public class noteCreateActivity extends AppCompatActivity {
 
     private void showAddURLDialog() {
         if (dialogAddURL == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(noteCreateActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(NoteCreateActivity.this);
             View view = LayoutInflater.from(this).inflate(R.layout.note_add_url, (ViewGroup) findViewById(R.id.layoutAddURLContainer));
             builder.setView(view);
 
@@ -400,9 +426,9 @@ public class noteCreateActivity extends AppCompatActivity {
 
             view.findViewById(R.id.textAdd).setOnClickListener(v -> {
                 if (inputURL.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(noteCreateActivity.this, "Enter URL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NoteCreateActivity.this, "Enter URL", Toast.LENGTH_SHORT).show();
                 } else if (!Patterns.WEB_URL.matcher(inputURL.getText().toString()).matches()) {
-                    Toast.makeText(noteCreateActivity.this, "Please Enter A Valid URL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NoteCreateActivity.this, "Please Enter A Valid URL", Toast.LENGTH_SHORT).show();
                 } else {
                     textWebURL.setText(inputURL.getText().toString());
                     layoutWebURL.setVisibility(View.VISIBLE);

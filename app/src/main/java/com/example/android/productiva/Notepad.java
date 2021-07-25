@@ -26,7 +26,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.android.productiva.NoteActivities.noteCreateActivity;
+import com.example.android.productiva.NoteActivities.NoteCreateActivity;
 import com.example.android.productiva.NoteAdapter.NoteAdapter;
 import com.example.android.productiva.NoteDatabase.NoteDatabase;
 import com.example.android.productiva.NoteEntities.Note;
@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class notepad extends AppCompatActivity implements NoteListener {
+public class Notepad extends AppCompatActivity implements NoteListener {
     public static final int REQUEST_CODE_ADD_NOTE = 1;
     public static final int REQUEST_CODE_UPDATE_NOTE = 2;
     public static final int REQUEST_CODE_SHOW_NOTE = 3;
@@ -68,7 +68,7 @@ public class notepad extends AppCompatActivity implements NoteListener {
         toolbar.setNavigationOnClickListener(v -> finish());
 
         FloatingActionButton noteFaB = findViewById(R.id.fab_addNote);
-        noteFaB.setOnClickListener(v -> startActivityForResult(new Intent(getApplicationContext(), noteCreateActivity.class), REQUEST_CODE_ADD_NOTE));
+        noteFaB.setOnClickListener(v -> startActivityForResult(new Intent(getApplicationContext(), NoteCreateActivity.class), REQUEST_CODE_ADD_NOTE));
 
 
         notesRecyclerView = findViewById(R.id.notesRecyclerView);
@@ -137,7 +137,7 @@ public class notepad extends AppCompatActivity implements NoteListener {
     @Override
     public void onNoteClicked(Note note, int position) {
         noteClickedPosition = position;
-        Intent intent = new Intent(getApplicationContext(), noteCreateActivity.class);
+        Intent intent = new Intent(getApplicationContext(), NoteCreateActivity.class);
         intent.putExtra("isViewOrUpdate", true);
         intent.putExtra("note", note);
         startActivityForResult(intent, REQUEST_CODE_UPDATE_NOTE);
@@ -191,7 +191,7 @@ public class notepad extends AppCompatActivity implements NoteListener {
                 if (selectedImageUri != null) {
                     try {
                         String selectedImagePath = getPathFromUri(selectedImageUri);
-                        Intent intent = new Intent(getApplicationContext(), noteCreateActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), NoteCreateActivity.class);
                         intent.putExtra("isFromQuickActions", true);
                         intent.putExtra("quickActionType", "image");
                         intent.putExtra("imagePath", selectedImagePath);
@@ -206,7 +206,7 @@ public class notepad extends AppCompatActivity implements NoteListener {
 
     private void showAddURLDialog() {
         if (dialogAddURL == null) {
-            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(notepad.this);
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(Notepad.this);
             View view = LayoutInflater.from(this).inflate(R.layout.note_add_url, (ViewGroup) findViewById(R.id.layoutAddURLContainer));
             builder.setView(view);
 
@@ -219,12 +219,12 @@ public class notepad extends AppCompatActivity implements NoteListener {
 
             view.findViewById(R.id.textAdd).setOnClickListener(v -> {
                 if (inputURL.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(notepad.this, "Enter URL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Notepad.this, "Enter URL", Toast.LENGTH_SHORT).show();
                 } else if (!Patterns.WEB_URL.matcher(inputURL.getText().toString()).matches()) {
-                    Toast.makeText(notepad.this, "Please Enter A Valid URL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Notepad.this, "Please Enter A Valid URL", Toast.LENGTH_SHORT).show();
                 } else {
                     dialogAddURL.dismiss();
-                    Intent intent = new Intent(getApplicationContext(), noteCreateActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), NoteCreateActivity.class);
                     intent.putExtra("isFromQuickActions", true);
                     intent.putExtra("quickActionType", "URL");
                     intent.putExtra("URL", inputURL.getText().toString());
