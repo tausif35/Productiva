@@ -14,15 +14,14 @@ import java.util.List;
 
 public class ToDoDatabaseHandler extends SQLiteOpenHelper {
 
-    private Context context;
-    private SQLiteDatabase db;
-
     public static final int VERSION = 1;
     public static final String NAME = "toDoListDatabase";
     public static final String TODO_TABLE = "todo";
     public static final String ID = "id";
     public static final String TASK = "task";
     public static final String STATUS = "status";
+    private Context context;
+    private SQLiteDatabase db;
 
 
     public ToDoDatabaseHandler(Context context) {

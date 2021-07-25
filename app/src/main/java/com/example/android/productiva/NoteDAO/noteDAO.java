@@ -14,8 +14,10 @@ import java.util.List;
 public interface noteDAO {
     @Query("SELECT * FROM notes ORDER BY id DESC")
     List<Note> getAllNotes();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNote(Note note);
+
     @Delete
     void deleteNote(Note note);
 }

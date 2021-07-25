@@ -21,14 +21,6 @@ public class ToDoRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback 
     private Context context;
     private ToDoRecyclerItemTouchListener swipeListener;
 
-    //Interface for ToDoRecyclerItemTouchListener
-    public interface ToDoRecyclerItemTouchListener {
-        void onItemSwipeLeft(int position, boolean isConfirm);
-
-        void onItemSwipeRight(int position);
-    }
-
-
     public ToDoRecyclerItemTouchHelper(ToDoAdapter adapter, Context context) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
@@ -36,7 +28,6 @@ public class ToDoRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback 
         this.swipeListener = (ToDoRecyclerItemTouchListener) context;
 
     }
-
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -94,7 +85,7 @@ public class ToDoRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback 
         if (dX > 0) {
             icon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_edit);
             icon.setTint(Color.WHITE);
-            background = new ColorDrawable(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+            background = new ColorDrawable(ContextCompat.getColor(context, R.color.colorEdit));
         } else {
             icon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_delete);
             icon.setTint(Color.WHITE);
@@ -125,5 +116,12 @@ public class ToDoRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback 
 
         background.draw(c);
         icon.draw(c);
+    }
+
+    //Interface for ToDoRecyclerItemTouchListener
+    public interface ToDoRecyclerItemTouchListener {
+        void onItemSwipeLeft(int position, boolean isConfirm);
+
+        void onItemSwipeRight(int position);
     }
 }

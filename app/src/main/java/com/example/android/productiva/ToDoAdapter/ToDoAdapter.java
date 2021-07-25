@@ -25,32 +25,12 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
     private ToDoDatabaseHandler db;
 
 
-    //Inner view holder class
-    public static class ToDoViewHolder extends RecyclerView.ViewHolder {
-
-        public CheckBox checkTask;
-
-        //Constructor
-        public ToDoViewHolder(View itemView) {
-            super(itemView);
-            checkTask = itemView.findViewById(R.id.todoCheckBox);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-        }
-    }
-
     //Constructor
     public ToDoAdapter(List<ToDoModel> taskList, Context context) {
         this.taskList = taskList;
         this.context = context;
         db = new ToDoDatabaseHandler(context);
     }
-
 
     @Override
     public ToDoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -60,7 +40,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
 
         return toDoViewHolder;
     }
-
 
     @Override
     public void onBindViewHolder(ToDoViewHolder holder, int position) {
@@ -81,10 +60,28 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
         });
     }
 
-
     @Override
     public int getItemCount() {
         return taskList.size();
+    }
+
+    //Inner view holder class
+    public static class ToDoViewHolder extends RecyclerView.ViewHolder {
+
+        public CheckBox checkTask;
+
+        //Constructor
+        public ToDoViewHolder(View itemView) {
+            super(itemView);
+            checkTask = itemView.findViewById(R.id.todoCheckBox);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
     }
 
 }

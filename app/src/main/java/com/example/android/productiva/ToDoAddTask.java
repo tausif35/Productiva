@@ -29,22 +29,15 @@ public class ToDoAddTask extends BottomSheetDialogFragment {
     private int position = -1;
     private boolean isUpdate = false;
 
-    //Interface for BottomSheetListener
-    public interface BottomSheetListener {
-        void onAddItem(boolean isAdded, int position);
-    }
-
     //Constructor
     public ToDoAddTask() {
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NORMAL, R.style.DialogStyle);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +49,7 @@ public class ToDoAddTask extends BottomSheetDialogFragment {
         newTaskText = view.findViewById(R.id.newTaskText);
         newTaskSaveButton = view.findViewById(R.id.newTaskButton);
         newTaskSaveButton.setEnabled(false);
-        newTaskSaveButton.setTextColor(Color.GRAY);
+        newTaskSaveButton.setBackgroundColor(Color.GRAY);
 
         //Get bundle data to update an existing task
         Bundle bundle = getArguments();
@@ -68,7 +61,7 @@ public class ToDoAddTask extends BottomSheetDialogFragment {
             if (task.length() > 0) {
                 newTaskSaveButton.setEnabled(true);
                 newTaskSaveButton.setText("Edit & Save");
-                newTaskSaveButton.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDarker));
+                newTaskSaveButton.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
             }
         }
 
@@ -82,10 +75,10 @@ public class ToDoAddTask extends BottomSheetDialogFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() <= 0) {
                     newTaskSaveButton.setEnabled(false);
-                    newTaskSaveButton.setTextColor(Color.GRAY);
+                    newTaskSaveButton.setBackgroundColor(Color.GRAY);
                 } else if (s.length() > 0) {
                     newTaskSaveButton.setEnabled(true);
-                    newTaskSaveButton.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDarker));
+                    newTaskSaveButton.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
                 }
             }
 
@@ -135,5 +128,10 @@ public class ToDoAddTask extends BottomSheetDialogFragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement BottomSheetListener");
         }
+    }
+
+    //Interface for BottomSheetListener
+    public interface BottomSheetListener {
+        void onAddItem(boolean isAdded, int position);
     }
 }

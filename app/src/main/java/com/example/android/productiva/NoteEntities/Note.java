@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity (tableName = "notes")
+@Entity(tableName = "notes")
 
 public class Note implements Serializable {
     @PrimaryKey(autoGenerate = true)
@@ -90,6 +90,7 @@ public class Note implements Serializable {
     public void setWeb_link(String web_link) {
         this.web_link = web_link;
     }
+
     @NonNull
     @Override
     public String toString() {

@@ -1,29 +1,29 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="#3f3f3f">
+    android:background="#3f3f3f"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/newTaskText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:hint="Write A New Task"
-        android:textColorHint="@color/colorTextHint"
-        android:textColor="@color/white"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorTextHint" />
 
     <Button
         android:id="@+id/newTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newTaskText"
-        android:textSize="16sp"
-        android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
         android:text="Add"
         android:textAllCaps="false"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
-</RelativeLayout>
+</LinearLayout>

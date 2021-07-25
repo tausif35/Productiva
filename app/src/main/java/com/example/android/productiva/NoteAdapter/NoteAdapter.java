@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.productiva.NoteEntities.Note;
 import com.example.android.productiva.NoteListeners.NoteListener;
 import com.example.android.productiva.R;
-import com.example.android.productiva.timer;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         holder.setNote(notes.get(position));
-        holder.noteLayout.setOnClickListener(v -> noteListener.onNoteClicked(notes.get(position),position));
+        holder.noteLayout.setOnClickListener(v -> noteListener.onNoteClicked(notes.get(position), position));
     }
 
     @Override
@@ -58,6 +57,40 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     @Override
     public int getItemViewType(int position) {
         return position;
+    }
+
+    public void searchNotes(final String searchKeyword) {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (searchKeyword.trim().isEmpty()) {
+                    notes = noteSource;
+                } else {
+                    ArrayList<Note> temp = new ArrayList<>();
+                    for (Note note : noteSource) {
+                        if (note.getTitle().toLowerCase().contains(searchKeyword.toLowerCase())
+                                || note.getSubtitle().toLowerCase().contains(searchKeyword.toLowerCase())
+                                || note.getNote_text().toLowerCase().contains(searchKeyword.toLowerCase())) {
+                            temp.add(note);
+                        }
+                    }
+                    notes = temp;
+                }
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+        }, 500);
+    }
+
+    public void cancelTimer() {
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     static class NoteViewHolder extends RecyclerView.ViewHolder {
@@ -89,44 +122,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             } else {
                 gradientDrawable.setColor(Color.parseColor("#333333"));
             }
-            if (note.getImage_path()!=null){
+            if (note.getImage_path() != null) {
                 imageNote.setImageBitmap(BitmapFactory.decodeFile(note.getImage_path()));
                 imageNote.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 imageNote.setVisibility(View.GONE);
             }
-        }
-    }
-    public void searchNotes(final String searchKeyword){
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (searchKeyword.trim().isEmpty()){
-                    notes = noteSource;
-                }else {
-                    ArrayList<Note> temp = new ArrayList<>();
-                    for (Note note: noteSource){
-                        if (note.getTitle().toLowerCase().contains(searchKeyword.toLowerCase())
-                        || note.getSubtitle().toLowerCase().contains(searchKeyword.toLowerCase())
-                                || note.getNote_text().toLowerCase().contains(searchKeyword.toLowerCase())){
-                            temp.add(note);
-                        }
-                    }
-                    notes = temp;
-                }
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        notifyDataSetChanged();
-                    }
-                });
-            }
-        }, 500);
-    }
-    public void cancelTimer(){
-        if (timer!= null){
-            timer.cancel();
         }
     }
 }

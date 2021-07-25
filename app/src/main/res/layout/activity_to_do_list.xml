@@ -3,26 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#292929">
+    android:background="@color/bgColor">
 
-    <TextView
-        android:id="@+id/tasksText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="To-Do List"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="32sp"
-        android:textStyle="bold"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/todo_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ToDo List"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/todo_toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/todo_toolbar"
+        app:layout_constraintStart_toStartOf="@+id/todo_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/todo_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:alwaysDrawnWithCache="true"
         android:scrollbars="none"
         android:scrollingCache="true"
@@ -30,7 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tasksText" />
+        app:layout_constraintTop_toBottomOf="@+id/todo_toolbar" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -41,7 +49,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorSecondary"
         android:contentDescription="ToDoList Floating Action Button"
-        android:src="@drawable/ic_baseline_fabadd"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
