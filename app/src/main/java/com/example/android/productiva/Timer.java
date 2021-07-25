@@ -154,6 +154,7 @@ public class Timer extends AppCompatActivity {
     }
 
     private void pauseTimer() {
+        
         mCountDownTimer.cancel();
         mTimerRunning = false;
         mButtonStartPause.setText("Resume");
