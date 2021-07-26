@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Productiva">
-        <activity android:name=".reminder" />
+        <activity android:name=".About" />
         <activity android:name=".Timer" />
         <activity android:name=".Notepad"
             android:screenOrientation="portrait"

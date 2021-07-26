@@ -185,7 +185,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/roboto_slab_bold"
-                        android:text="Settings"
+                        android:text="About"
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold" />

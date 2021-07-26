@@ -50,7 +50,7 @@ public class Dashboard extends AppCompatActivity {
         card4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(Dashboard.this, reminder.class);
+                intent = new Intent(Dashboard.this, About.class);
                 startActivity(intent);
             }
         });
