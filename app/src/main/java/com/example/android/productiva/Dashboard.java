@@ -7,6 +7,10 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.android.productiva.Notes.NotesActivity;
+import com.example.android.productiva.Timer.Timer;
+import com.example.android.productiva.ToDo.ToDoActivity;
+
 public class Dashboard extends AppCompatActivity {
 
     private Intent intent;
@@ -27,7 +31,7 @@ public class Dashboard extends AppCompatActivity {
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(Dashboard.this, ToDoList.class);
+                intent = new Intent(Dashboard.this, ToDoActivity.class);
                 startActivity(intent);
             }
         });
@@ -36,7 +40,7 @@ public class Dashboard extends AppCompatActivity {
         card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(Dashboard.this, Notepad.class);
+                intent = new Intent(Dashboard.this, NotesActivity.class);
                 startActivity(intent);
             }
         });

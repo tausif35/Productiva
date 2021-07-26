@@ -1,0 +1,100 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgColor"
+    tools:context=".Notes.NoteCreateActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/noteCreate_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/toolbar_menu" />
+
+    <EditText
+        android:id="@+id/input_noteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:hint="Note title"
+        android:inputType="text"
+        android:maxLength="30"
+        android:maxLines="1"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorDefaultNoteColor"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noteCreate_toolbar" />
+
+    <EditText
+        android:id="@+id/input_noteSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="Note subtitle"
+        android:inputType="text"
+        android:maxLength="60"
+        android:maxLines="1"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorTextHint"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_noteTitle" />
+
+    <TextView
+        android:id="@+id/textView_noteDateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="EEEE, dd MMMM yyyy hh:mm a"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_noteSubtitle" />
+
+    <EditText
+        android:id="@+id/input_noteText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:gravity="start"
+        android:hint="Write the note here"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/colorTextHint"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/noteColorPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_noteDateTime" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/noteColorPicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alwaysDrawnWithCache="true"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:scrollbars="none"
+        android:scrollingCache="true"
+        android:smoothScrollbar="true"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:spanCount="1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

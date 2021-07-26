@@ -8,7 +8,7 @@
     <string name="notes">Notes</string>
     <string name="timer">Timer</string>
 
-    <!--Notepad Strings-->
+    <!--NotesActivity Strings-->
     <string name="noteMyNote">My Notes</string>
     <string name="noteSearchNotes">Search Notes</string>
     <string name="noteNoteTitle">Note Title</string>

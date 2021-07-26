@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Color array -->
+    <array name="colorArray">
+        <item>@color/colorPrimary</item>
+        <item>#FF6F00</item>
+        <item>#ED3F33</item>
+        <item>#B9D636</item>
+        <item>#36AA3B</item>
+        <item>#1B9186</item>
+        <item>#0277BD</item>
+        <item>#3F51B5</item>
+        <item>#5A2CB8</item>
+        <item>#607D8B</item>
+    </array>
+
+
+</resources>

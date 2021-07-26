@@ -2,6 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/menu_colorPicker"
+        android:icon="@drawable/ic_color"
+        android:iconTint="@color/white"
+        android:title="Colors"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_delete"
+        android:iconTint="@color/white"
+        android:title="Delete"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_save"
@@ -9,5 +22,6 @@
         android:iconTint="@color/white"
         android:title="Save"
         app:showAsAction="always" />
+
 
 </menu>
