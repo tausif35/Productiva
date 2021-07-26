@@ -15,7 +15,7 @@ import java.util.List;
 public class ToDoDatabaseHandler extends SQLiteOpenHelper {
 
     public static final int VERSION = 1;
-    public static final String NAME = "toDoListDatabase";
+    public static final String NAME = "ToDoListDatabase";
     public static final String TODO_TABLE = "todo";
     public static final String ID = "id";
     public static final String TASK = "task";
@@ -37,7 +37,6 @@ public class ToDoDatabaseHandler extends SQLiteOpenHelper {
                 + TASK + " TEXT, "
                 + STATUS + " INTEGER)";
         try {
-            Toast.makeText(context, "New table created", Toast.LENGTH_SHORT).show();
             db.execSQL(CREATE_TODO_TABLE);
 
         } catch (Exception e) {
@@ -70,8 +69,6 @@ public class ToDoDatabaseHandler extends SQLiteOpenHelper {
 
         if (rowID == -1) {
             Toast.makeText(context, "Failed to insert data", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Successfully inserted data", Toast.LENGTH_SHORT).show();
         }
     }
 

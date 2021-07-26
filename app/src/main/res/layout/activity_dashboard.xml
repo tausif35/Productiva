@@ -58,6 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:adjustViewBounds="true"
+                        app:tint="@color/black"
                         android:src="@drawable/ic_todo_list" />
 
                     <TextView
@@ -94,6 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:adjustViewBounds="true"
+                        app:tint="@color/black"
                         android:src="@drawable/ic_notes" />
 
                     <TextView
@@ -138,7 +140,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/ic_timer" />
+                        android:src="@drawable/ic_timer"
+                        app:tint="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -174,7 +177,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/ic_dashboard_settings" />
+                        android:src="@drawable/ic_about"
+                        app:tint="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"

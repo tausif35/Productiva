@@ -31,14 +31,14 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/timer_circle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer_toolbar"
         tools:progress="50" />
 
 
@@ -65,7 +65,7 @@
             android:id="@+id/timer_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0:00:0"
+            android:text="00:00:0"
             android:textColor="@color/white"
             android:textSize="45sp"
             />
@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="8dp"
+            android:layout_margin="16dp"
             android:paddingHorizontal="16dp"
             android:paddingVertical="10dp"
             android:text="Start"
@@ -116,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="8dp"
+            android:layout_margin="16dp"
             android:paddingHorizontal="16dp"
             android:paddingVertical="10dp"
             android:text="Reset"
@@ -130,16 +130,25 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_setupTimer"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/timer_setup"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="4dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:text="Timer setup"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:cornerRadius="100dp"
+        app:icon="@drawable/ic_alarm"
+        app:iconTint="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:strokeColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:srcCompat="@drawable/ic_settings" />
+        app:strokeWidth="2dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,13 +11,14 @@ import com.shawnlin.numberpicker.NumberPicker;
 
 public class TimerBottomSheet extends BottomSheetDialogFragment {
 
-    private int workTime, breakTime, cycles;
+    private long workTimeMS, breakTimeMS;
+    int cycles;
     private OnSetButtonClickListener listener;
 
     //Constructor
-    public TimerBottomSheet(int workTime, int breakTime, int cycles) {
-        this.workTime = workTime;
-        this.breakTime = breakTime;
+    public TimerBottomSheet(long workTimeMS, long breakTimeMS, int cycles) {
+        this.workTimeMS = workTimeMS;
+        this.breakTimeMS = breakTimeMS;
         this.cycles = cycles;
     }
 
@@ -33,16 +34,16 @@ public class TimerBottomSheet extends BottomSheetDialogFragment {
         NumberPicker cyclePicker = view.findViewById(R.id.cyclePicker);
 
 
-        workTimePicker.setValue(workTime);
-        breakTimePicker.setValue(breakTime);
+        workTimePicker.setValue((int) (workTimeMS / 60000));
+        breakTimePicker.setValue((int) (breakTimeMS / 60000));
         cyclePicker.setValue(cycles);
 
         workTimePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
-            workTime = newVal;
+            workTimeMS = newVal * 60000;
         });
 
         breakTimePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
-            breakTime = newVal;
+            breakTimeMS = newVal * 60000;
         });
 
         cyclePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
@@ -51,7 +52,7 @@ public class TimerBottomSheet extends BottomSheetDialogFragment {
 
         //Send back value on set button press
         btnSetTimer.setOnClickListener(v -> {
-            listener.OnSetButtonClick(workTime, breakTime, cycles);
+            listener.OnSetButtonClick(workTimeMS, breakTimeMS, cycles);
             dismiss();
         });
 
@@ -67,6 +68,6 @@ public class TimerBottomSheet extends BottomSheetDialogFragment {
     //Interface for OnSetButtonClickListener
     public interface OnSetButtonClickListener {
         //This applies the settings
-        void OnSetButtonClick(int workTime, int breakTime, int cycles);
+        void OnSetButtonClick(long workTimeMS, long breakTimeMS, int cycles);
     }
 }

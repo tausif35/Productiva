@@ -3,6 +3,7 @@ package com.example.android.productiva;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,32 +12,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
 
 
 public class Timer extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private TextView mTextViewCountDown;
-    private MaterialButton mButtonStartPause, mButtonReset;
-    private FloatingActionButton fabSetupTimer;
-    private CountDownTimer mCountDownTimer;
-    private ProgressBar mProgressBar;
-    private  TextView timerCycle;
-    private TextView timerLabel;
-    private int currentProgress = 0;
-    private boolean mTimerRunning;
-    private long initTimeMS = 0, workTimeMS = 10000, breakTimeMS = 10000;
-    private int cycles = 2;
+    private MediaPlayer alertPlayer;
+    private TextView countDownText, timerCycle, timerLabel;
+    private MaterialButton btnStartPause, btnReset, btnSetup;
+    private CountDownTimer countDownTimer;
+    private ProgressBar progressBar;
+    private TimerBottomSheet timerBottomSheet;
+    private boolean timerRunning;
+    private long initTimeMS = 0, workTimeMS = 0, breakTimeMS = 0;
+    private int cycles = 1;
     private int cycleCounter = 0;
-    private int cycleCurrent =1;
+    private int cycleCurrent = 1;
     private boolean working = true;
-
     private long timeLeftMS;
-
-    MediaPlayer alertPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +38,18 @@ public class Timer extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
         setTitle("");
 
+
         //Finding Views
-        mTextViewCountDown = findViewById(R.id.timer_text);
-        mButtonStartPause = findViewById(R.id.timer_start);
-        mButtonReset = findViewById(R.id.timer_reset);
-        mProgressBar = findViewById(R.id.progress_bar);
-        fabSetupTimer = findViewById(R.id.fab_setupTimer);
+        countDownText = findViewById(R.id.timer_text);
+        btnStartPause = findViewById(R.id.timer_start);
+        btnReset = findViewById(R.id.timer_reset);
+        progressBar = findViewById(R.id.progress_bar);
+        btnSetup = findViewById(R.id.timer_setup);
         timerLabel = findViewById(R.id.timer_label);
-        timerCycle =findViewById(R.id.timer_cycle);
+        timerCycle = findViewById(R.id.timer_cycle);
+
+        Log.d("onTick: ", String.valueOf(progressBar.getProgress()));
+
 
         Toolbar toolbar = findViewById(R.id.timer_toolbar);
 
@@ -62,23 +60,29 @@ public class Timer extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> finish());
 
 
-        fabSetupTimer.setOnClickListener(v -> {
-            TimerBottomSheet timerBottomSheet = new TimerBottomSheet(25, 5, 4);
-            timerBottomSheet.setOnSetupButtonClickListener((workTime, breakTime, cycles) -> {
-                workTimeMS = workTime * 60000;
-                breakTimeMS = breakTime * 60000;
+        btnSetup.setOnClickListener(v -> {
+            if (workTimeMS > 0 && breakTimeMS > 0)
+                timerBottomSheet = new TimerBottomSheet(workTimeMS, breakTimeMS, cycles);
+            else
+                timerBottomSheet = new TimerBottomSheet(60000, 60000, 1);
+
+            timerBottomSheet.setOnSetupButtonClickListener((workTimeMS, breakTimeMS, cycles) -> {
+                this.workTimeMS = workTimeMS;
+                this.breakTimeMS = breakTimeMS;
                 this.cycles = cycles;
                 initTimeMS = workTimeMS;
                 timeLeftMS = initTimeMS;
                 updateCountDownText(timeLeftMS);
+                updateTimerProgressBar(0);
             });
             timerBottomSheet.show(getSupportFragmentManager(), "TimerBottomSheet");
         });
 
-        mProgressBar.setMax((int) (initTimeMS / 10));
-        mButtonStartPause.setOnClickListener(v -> {
+
+        btnStartPause.setOnClickListener(v -> {
             if (initTimeMS > 0) {
-                if (mTimerRunning) {
+                btnStateChange(btnSetup, false, R.color.disabledColor);
+                if (timerRunning) {
                     pauseTimer();
                 } else {
                     startTimer();
@@ -86,19 +90,24 @@ public class Timer extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Please setup your Pomodoro", Toast.LENGTH_SHORT).show();
             }
-
         });
-        mButtonReset.setOnClickListener(v -> resetTimer());
-        updateCountDownText(initTimeMS);
+
+        btnReset.setOnClickListener(v -> resetTimer());
+
+        updateTimerProgressBar(0);
+
     }
 
+
+    //This starts the timer
     private void startTimer() {
-        mCountDownTimer = new CountDownTimer(timeLeftMS, 10) {
+        progressBar.setMax((int) (initTimeMS / 10));
+        countDownTimer = new CountDownTimer(timeLeftMS, 10) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeftMS = millisUntilFinished;
-                updateCountDownText(millisUntilFinished);
-                updateTimerProgressBar((int) (initTimeMS - millisUntilFinished) / 10);
+                updateCountDownText(timeLeftMS);
+                updateTimerProgressBar((int) (initTimeMS - timeLeftMS) / 10);
             }
 
             @Override
@@ -107,116 +116,103 @@ public class Timer extends AppCompatActivity {
                 if (working) {
                     cycleCounter++;
                     if (cycleCounter < cycles) {
-                        playAlert("workFinished");
                         timerLabel.setText("Break");
                         initTimeMS = breakTimeMS;
                         timeLeftMS = initTimeMS;
-                        updateCountDownText(timeLeftMS);
                         working = false;
+                        playAlert("workFinished");
+                        updateCountDownText(timeLeftMS);
                         startTimer();
                     } else {
-                        timerCycle.setText("Completed!");
                         playAlert("pomodoroFinished");
-                        mTimerRunning = false;
-                        mButtonStartPause.setText("Start");
-                        mButtonStartPause.setIconResource(R.drawable.ic_play);
-                        mButtonStartPause.setClickable(false);
-                        mButtonStartPause.setIconTintResource(R.color.disabledColor);
-                        mButtonStartPause.setTextColor(getColor(R.color.disabledColor));
-                        mButtonStartPause.setStrokeColorResource(R.color.disabledColor);
-                        mButtonReset.setClickable(true);
-                        mButtonReset.setIconTintResource(R.color.colorPrimary);
-                        mButtonReset.setTextColor(getColor(R.color.colorPrimary));
-                        mButtonReset.setStrokeColorResource(R.color.colorPrimary);
+                        timerCycle.setText("Completed!");
+                        timerRunning = false;
+                        btnStartPause.setText("Start");
+                        btnStartPause.setIconResource(R.drawable.ic_play);
+                        btnStateChange(btnStartPause, false, R.color.disabledColor);
+                        btnStateChange(btnReset, true, R.color.colorPrimary);
                     }
                 } else {
-                    cycleCurrent++;
-                    timerCycle.setText("Cycle: "+cycleCurrent);
                     playAlert("breakFinished");
+                    working = true;
+                    cycleCurrent++;
+                    timerCycle.setText(String.format("Cycle: %d", cycleCurrent));
                     timerLabel.setText("Work");
                     initTimeMS = workTimeMS;
                     timeLeftMS = initTimeMS;
                     updateCountDownText(timeLeftMS);
-                    working = true;
                     startTimer();
                 }
             }
         }.start();
 
-        mTimerRunning = true;
-        mButtonStartPause.setText("pause");
-        mButtonStartPause.setIconResource(R.drawable.ic_pause);
-        mButtonReset.setClickable(false);
-        mButtonReset.setIconTintResource(R.color.disabledColor);
-        mButtonReset.setTextColor(getColor(R.color.disabledColor));
-        mButtonReset.setStrokeColorResource(R.color.disabledColor);
+        timerRunning = true;
+        btnStartPause.setText("pause");
+        btnStartPause.setIconResource(R.drawable.ic_pause);
+        btnStateChange(btnReset, false, R.color.disabledColor);
 
     }
 
+
+    //This is for pausing the timer
     private void pauseTimer() {
-        
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-        mButtonStartPause.setText("Resume");
-        mButtonStartPause.setIconResource(R.drawable.ic_play);
-        mButtonReset.setClickable(true);
-        mButtonReset.setIconTintResource(R.color.colorPrimary);
-        mButtonReset.setTextColor(getColor(R.color.colorPrimary));
-        mButtonReset.setStrokeColorResource(R.color.colorPrimary);
+        countDownTimer.cancel();
+        timerRunning = false;
+        btnStartPause.setText("Resume");
+        btnStartPause.setIconResource(R.drawable.ic_play);
+        btnStateChange(btnReset, true, R.color.colorPrimary);
     }
 
-
+    //This will reset timer and everything related to it
     private void resetTimer() {
-        updateCountDownText(initTimeMS);
+        cycleCounter = 0;
+        cycleCurrent = 1;
+        initTimeMS = workTimeMS;
         timeLeftMS = initTimeMS;
-        mButtonReset.setClickable(false);
-        mButtonReset.setIconTintResource(R.color.disabledColor);
-        mButtonReset.setTextColor(getColor(R.color.disabledColor));
-        mButtonReset.setStrokeColorResource(R.color.disabledColor);
-        mButtonStartPause.setClickable(true);
-        mButtonStartPause.setText("Start");
-        mButtonStartPause.setIconTintResource(R.color.colorPrimary);
-        mButtonStartPause.setTextColor(getColor(R.color.colorPrimary));
-        mButtonStartPause.setStrokeColorResource(R.color.colorPrimary);
+        btnStartPause.setText("Start");
+        timerLabel.setText("Work");
+        timerCycle.setText(String.format("Cycle: %d", cycleCurrent));
+        btnStateChange(btnStartPause, true, R.color.colorPrimary);
+        btnStateChange(btnSetup, true, R.color.colorPrimary);
         updateTimerProgressBar(0);
+        updateCountDownText(initTimeMS);
+        if (countDownTimer != null)
+            countDownTimer.cancel();
     }
 
+    //Timer text update
     private void updateCountDownText(long millisUntilFinished) {
         //millisUntilFinished+=1000;
         int minutes = (int) (millisUntilFinished / 1000) / 60;
         int seconds = (int) (millisUntilFinished / 1000) % 60;
         int deciSeconds = (int) (millisUntilFinished / 100) % 10;
-        String timeLeftFormatted = String.format(Locale.getDefault(), "%01d:%02d:%01d", minutes, seconds, deciSeconds);
-        mTextViewCountDown.setText(timeLeftFormatted);
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d:%01d", minutes, seconds, deciSeconds);
+        countDownText.setText(timeLeftFormatted);
     }
 
+    //Progress bar increase
     private void updateTimerProgressBar(int currentProgress) {
-        mProgressBar.setProgress(currentProgress);
+        progressBar.setProgress(currentProgress);
     }
 
     // Alert Functions
-
     private void playAlert(String alertType) {
         if (alertPlayer == null) {
 
-            if (alertType == "workFinished") {
+            if (alertType.equals("workFinished")) {
                 alertPlayer = MediaPlayer.create(this, R.raw.work_finished);
-            } else if (alertType == "breakFinished") {
+            } else if (alertType.equals("breakFinished")) {
                 alertPlayer = MediaPlayer.create(this, R.raw.break_finished);
             } else {
                 alertPlayer = MediaPlayer.create(this, R.raw.pomodoro_finished);
             }
 
-            alertPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    stopAlert();
-                }
-            });
+            alertPlayer.setOnCompletionListener(mp -> stopAlert());
             alertPlayer.start();
         }
     }
 
+    //Stop alert sound
     private void stopAlert() {
         if (alertPlayer != null) {
             alertPlayer.release();
@@ -225,11 +221,21 @@ public class Timer extends AppCompatActivity {
         }
     }
 
+
+    //when activity is closed
     @Override
     protected void onStop() {
         super.onStop();
         stopAlert();
+        resetTimer();
     }
 
+    //This is for changing button clickable state
+    private void btnStateChange(MaterialButton button, boolean isClickable, int color) {
+        button.setClickable(isClickable);
+        button.setIconTintResource(color);
+        button.setTextColor(getColor(color));
+        button.setStrokeColorResource(color);
+    }
 
 }
