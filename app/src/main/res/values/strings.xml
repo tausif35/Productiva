@@ -23,7 +23,11 @@
     <string name="cancel">Cancel</string>
     <string name="note_delete_note">Delete Note</string>
     <string name="note_sure_delete">Are You Sure You Want to Delete This Note?</string>
-    <string name="filler">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since
-        the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </string>
+    <string name="about">Productiva is allows your smartphone to keep track of your daily essentials.
+        The purpose of  this app is to make the mobile device users more efficient wherever they are by allowing them to
+    jot down notes, set up task lists and work along with a pomodoro timer. Productiva features a minimalistic style while
+    providing the user with necessary functionalities.</string>
+    <string name="team">Productiva was developed as a project work by Tausif Ahmed and Arian Islam, two Software Engineering undergrads
+    from Shahjalal University of Science and Technology.</string>
 
 </resources>

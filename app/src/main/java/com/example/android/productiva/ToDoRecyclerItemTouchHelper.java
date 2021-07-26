@@ -7,7 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -46,7 +48,11 @@ public class ToDoRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     swipeListener.onItemSwipeLeft(position, true);
+                    MediaPlayer playSound = MediaPlayer.create(context,R.raw.pomodoro_finished);
+                    playSound.setOnCompletionListener(mp -> stopAlert(playSound));
+                    playSound.start();
                 }
+
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
@@ -123,5 +129,12 @@ public class ToDoRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback 
         void onItemSwipeLeft(int position, boolean isConfirm);
 
         void onItemSwipeRight(int position);
+    }
+
+    private void stopAlert(MediaPlayer playSound) {
+        if (playSound != null) {
+            playSound.release();
+            playSound = null;
+        }
     }
 }

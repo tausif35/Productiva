@@ -2,6 +2,7 @@ package com.example.android.productiva.ToDoAdapter;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
                 if (isChecked) {
                     db.updateStatus(item.getId(), 1);
                     holder.checkTask.setPaintFlags(holder.checkTask.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    MediaPlayer playSound = MediaPlayer.create(context,R.raw.work_finished);
+                    playSound.setOnCompletionListener(mp -> stopAlert(playSound));
+                    playSound.start();
                 } else {
                     db.updateStatus(item.getId(), 0);
                     holder.checkTask.setPaintFlags(holder.checkTask.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
@@ -63,6 +67,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
     @Override
     public int getItemCount() {
         return taskList.size();
+    }
+
+
+    private void stopAlert(MediaPlayer playSound) {
+        if (playSound != null) {
+            playSound.release();
+            playSound = null;
+        }
     }
 
     //Inner view holder class
@@ -83,5 +95,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
             });
         }
     }
+
+
 
 }
