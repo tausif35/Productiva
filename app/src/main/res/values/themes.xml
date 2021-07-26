@@ -21,10 +21,4 @@
     </style>
 
     <!--Custom single choice alert dialog-->
-    <style name="CustomAlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
-        <!-- Used for the title and text -->
-        <item name="android:textColor">@color/white</item>
-        <!-- Used for the background -->
-        <item name="android:background">@color/bgColor</item>
-    </style>
 </resources>

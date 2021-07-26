@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#f4a261</color>
-    <color name="colorPrimaryDark">#f4a261</color>
     <color name="colorPrimaryDarker">#f4a261</color>
     <color name="colorSecondary">#f4a261</color>
     <color name="colorSecondaryDark">#e76f51</color>
@@ -10,25 +9,11 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="bgColor">#000000</color>
-    <color name="toolbarColor">#2d2d2f</color>
     <color name="disabledColor">#4C4C51</color>
 
 
     <!--<! NotesActivity Colors__>-->
-    <color name="colorSearchIcon">#dbdbdb</color>
     <color name="colorTextHint">#CAC8C8</color>
-    <color name="colorQuickActionsBackground">#2f2d2e</color>
-    <color name="colorIcons">#a4a4a4</color>
-    <color name="colorTextSubtitle">#cecece</color>
     <color name="colorDefaultNoteColor">#333333</color>
-    <color name="colorNoteSubtitleText">#fafafa</color>
-    <color name="colorMiscBackground">#1d1d1d</color>
-    <color name="colorSearchBackground">#3f3f3f</color>
-    <color name="colorExtra1">#ffcc5c</color>
-    <color name="colorExtra2">#ff6f69</color>
-    <color name="colorExtra3">#cc2a36</color>
-    <color name="colorExtra4">#00b159</color>
-    <color name="colorExtra5">#00a0b0</color>
-    <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
 </resources>

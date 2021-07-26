@@ -2,27 +2,8 @@
     <string name="app_name">Productiva</string>
     <string name="tagline">The only productivity \napp you will need!</string>
     <string name="title">PRODUCTIVA</string>
-    <string name="tap">Tap anywhere to continue...</string>
-    <string name="to_do_list">To Do</string>
-    <string name="reminder">Remind</string>
-    <string name="notes">Notes</string>
-    <string name="timer">Timer</string>
 
     <!--NotesActivity Strings-->
-    <string name="noteMyNote">My Notes</string>
-    <string name="noteSearchNotes">Search Notes</string>
-    <string name="noteNoteTitle">Note Title</string>
-    <string name="noteNoteSubtitle">Note Subtitle</string>
-    <string name="noteTypeNote">Write Note Here…</string>
-    <string name="noteMiscellaneous">Options</string>
-    <string name="noteChooseColor">Choose Color</string>
-    <string name="note_add_image">Add Image</string>
-    <string name="note_add_url">Add URL</string>
-    <string name="note_enter_url">Enter URL</string>
-    <string name="add">ADD</string>
-    <string name="cancel">Cancel</string>
-    <string name="note_delete_note">Delete Note</string>
-    <string name="note_sure_delete">Are You Sure You Want to Delete This Note?</string>
     <string name="about">Productiva is allows your smartphone to keep track of your daily essentials.
         The purpose of  this app is to make the mobile device users more efficient wherever they are by allowing them to
     jot down notes, set up task lists and work along with a pomodoro timer. Productiva features a minimalistic style while
