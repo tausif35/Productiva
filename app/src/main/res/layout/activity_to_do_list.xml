@@ -50,7 +50,6 @@
         android:backgroundTint="@color/colorSecondary"
         android:contentDescription="ToDoList Floating Action Button"
         android:src="@drawable/ic_add"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

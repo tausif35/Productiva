@@ -41,18 +41,16 @@ public class ToDoActivity extends AppCompatActivity implements ToDoAddTask.Botto
 
         toolbar.setNavigationOnClickListener(v -> finish());
 
+        //Setup db and fetch data
         db = new ToDoDatabaseHandler(getApplicationContext());
         taskList = db.getAllTasks();
 
         recyclerView = findViewById(R.id.tasksRecyclerView);
         fab = findViewById(R.id.floatingActionButton);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToDoAddTask toDoAddTask = new ToDoAddTask();
-                toDoAddTask.show(getSupportFragmentManager(), ToDoAddTask.TAG);
-            }
+        fab.setOnClickListener(v -> {
+            ToDoAddTask toDoAddTask = new ToDoAddTask();
+            toDoAddTask.show(getSupportFragmentManager(), ToDoAddTask.TAG);
         });
 
         recyclerViewCreation();

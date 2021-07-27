@@ -37,6 +37,8 @@ public class ToDoRecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
+
+        //Swipe Left to delete
         if (direction == ItemTouchHelper.LEFT) {
 
             // Show warning alert dialog

@@ -218,7 +218,6 @@ public class Timer extends AppCompatActivity {
         if (alertPlayer != null) {
             alertPlayer.release();
             alertPlayer = null;
-            Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT).show();
         }
     }
 

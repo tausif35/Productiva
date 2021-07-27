@@ -87,22 +87,23 @@ public class ToDoAddTask extends BottomSheetDialogFragment {
         });
 
         //Add new task or update existing task on task add button press
+
         boolean finalIsUpdate = isUpdate;
-        newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = newTaskText.getText().toString();
-                if (finalIsUpdate) {
-                    db.updateTask(bundle.getInt("id"), text);
-                } else {
-                    ToDoModel task = new ToDoModel();
-                    task.setTask(text);
-                    task.setStatus(0);
-                    db.insertTask(task);
-                }
-                listener.onAddItem(true, position);
-                dismiss();
+        newTaskSaveButton.setOnClickListener(v -> {
+            String text = newTaskText.getText().toString();
+            //Update the data in db
+            if (finalIsUpdate) {
+                db.updateTask(bundle.getInt("id"), text);
             }
+            //insert new data in db
+            else {
+                ToDoModel task = new ToDoModel();
+                task.setTask(text);
+                task.setStatus(0);
+                db.insertTask(task);
+            }
+            listener.onAddItem(true, position);
+            dismiss();
         });
 
         return view;

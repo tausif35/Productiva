@@ -26,6 +26,8 @@ public class NotesActivity extends AppCompatActivity {
     private Timer timer;
     private EditText searchBox;
     private NoteDatabaseHelper noteDatabaseHelper;
+
+
     //Debounce for Search Query
     private TextWatcher searchTextWatcher = new TextWatcher() {
         @Override
@@ -42,7 +44,7 @@ public class NotesActivity extends AppCompatActivity {
                         }
                     });
                 }
-            }, 1000); // 600ms delay before the timer executes the „run“ method from TimerTask
+            }, 1000); // 1000ms delay before the timer executes the „run“ method from TimerTask
         }
 
         @Override
@@ -110,7 +112,6 @@ public class NotesActivity extends AppCompatActivity {
         String searchTerm = searchBox.getText().toString();
         allNoteData = noteDatabaseHelper.getSearchedData(searchTerm);
         createRecyclerView();
-
     }
 
 }
